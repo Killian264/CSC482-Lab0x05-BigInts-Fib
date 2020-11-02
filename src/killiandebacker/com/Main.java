@@ -22,7 +22,10 @@ public class Main {
 //        if(find_max)
 //            return;
 
-        padder("N"); padder("X");
+//        MyBigDecimalIntTableMultiplication();
+//        return;
+
+        padder("N"); padder("X");padder("fib(X)");
         padder("Fib Recur"); padder("Doubling Ratios"); padder("Expected");
         padder("Fib Cache"); padder("Doubling Ratios"); padder("Expected");
         padder("Fib Loop"); padder("Doubling Ratios"); padder("Expected");
@@ -40,11 +43,102 @@ public class Main {
         while(true){
             prevTimes = Run2(count, prevTimes, countPrev);
             countPrev = count;
-            count++;
-//            count*=2;
-            if(count > 100){
-                break;
+//            count++;
+            count*=2;
+//            if(count > 100){
+//                break;
+//            }
+        }
+
+    }
+
+
+    private static void MyBigDecimalIntTableAddition(){
+        padder("N"); padder("X1"); padder("X2"); padder("Time"); padder("Doubling Ratio"); padder("Expected");
+        System.out.println();
+        long count = 1;
+        long countPrev = 1;
+        MyBigDecimalInt a = new MyBigDecimalInt("1");
+        MyBigDecimalInt b = new MyBigDecimalInt(a.value);
+        MyBigDecimalInt two = new MyBigDecimalInt("2");
+        long expected = 2;
+        long prevTime = 1;
+        while(true){
+
+            b.value = a.value;
+            int size = a.value.length();
+            padder(String.valueOf(a.value.length()));
+            if(size <= 11){
+                padder(a.value);
+                padder(b.value);
             }
+            else{
+                padder(a.value.substring(0,5) + "..." + a.value.substring(size - 5, size));
+                padder(b.value.substring(0,5) + "..." + b.value.substring(size - 5, size));
+            }
+            long timeStampBefore = getCpuTime();
+            a.plus(b);
+            long timeStampAfter = getCpuTime();
+            long time = timeStampAfter - timeStampBefore;
+            if(time <= 0){
+                time = 1;
+            }
+            double actual = (time / (double)prevTime);
+            prevTime = time;
+
+
+            numberPadder(time);
+            padder(Double.toString(actual) + "x");
+            padder(Double.toString(expected) + "x");
+//            a = a.times(two);
+            a.value = a.value + a.value;
+//            count*=2;
+
+            System.out.println();
+        }
+
+    }
+    private static void MyBigDecimalIntTableMultiplication(){
+        padder("N"); padder("X1"); padder("X2"); padder("Time"); padder("Doubling Ratio"); padder("Expected");
+        System.out.println();
+        long count = 1;
+        long countPrev = 1;
+        MyBigDecimalInt a = new MyBigDecimalInt("1");
+        MyBigDecimalInt b = new MyBigDecimalInt(a.value);
+        MyBigDecimalInt two = new MyBigDecimalInt("2");
+        long expected = 4;
+        long prevTime = 1;
+        while(true){
+            b.value = a.value;
+            int size = a.value.length();
+            padder(String.valueOf(a.value.length()));
+            if(size <= 11){
+                padder(a.value);
+                padder(b.value);
+            }
+            else{
+                padder(a.value.substring(0,5) + "..." + a.value.substring(size - 5, size));
+                padder(b.value.substring(0,5) + "..." + b.value.substring(size - 5, size));
+            }
+            long timeStampBefore = getCpuTime();
+            a.times(b);
+            long timeStampAfter = getCpuTime();
+            long time = timeStampAfter - timeStampBefore;
+            if(time <= 0){
+                time = 1;
+            }
+            double actual = (time / (double)prevTime);
+            prevTime = time;
+
+
+            numberPadder(time);
+            padder(Double.toString(actual) + "x");
+            padder(Double.toString(expected) + "x");
+//            a = a.times(two);
+            a.value = a.value + a.value;
+//            count*=2;
+
+            System.out.println();
         }
 
     }
@@ -54,11 +148,25 @@ public class Main {
     {
         return (int)(Math.log(number) / Math.log(2) + 1);
     }
+    // yea this is probably the worst thing ive ever done
+    static long prev_n_length = 1L;
     private static long[] Run2(long long_n, long[] prevTimes, long long_n_prev){
         String[] testStrings = {"R", "C", "L", "M"};
         MyBigDecimalInt n = new MyBigDecimalInt(String.valueOf(long_n));
+        long n_length = n.value.length();
         padder(String.valueOf(n.value.length() * 16));
-        padder(String.valueOf(n));
+        padder(String.valueOf(long_n - 1));
+        // you can ignore this next statement
+        // pretend it doesnt exist
+        String a = fibRegular2(n).value();
+        int size = a.length();
+        if(size <= 11){
+            padder(a);
+        }
+        else{
+            padder(a.substring(0,5) + "..." + a.substring(size - 5, size));
+        }
+        MyBigDecimalInt fib = new MyBigDecimalInt("1");
         int i = 0;
         for(String sortType : testStrings){
             if(long_n > 48 && sortType == "R"){
@@ -97,11 +205,11 @@ public class Main {
             }
             if(sortType == "L"){
                 fibRegular2(n);
-                expected = (double)(long_n) / (double)(long_n_prev);;
+                expected = (double)(long_n * n_length) / (double)(long_n_prev * prev_n_length);;
             }
             if(sortType == "M"){
-                fibRegular2(n);
-                expected = (double)(long_n) / (double)(long_n_prev);
+                fibMatrix2(n);
+                expected = (double)(long_n * n_length * n_length) / (double)(long_n_prev * prev_n_length * prev_n_length);
             }
 
             long timeStampAfter = getCpuTime();
@@ -121,6 +229,8 @@ public class Main {
         }
 
         System.out.println();
+
+        prev_n_length = n_length;
 
         return prevTimes;
     }

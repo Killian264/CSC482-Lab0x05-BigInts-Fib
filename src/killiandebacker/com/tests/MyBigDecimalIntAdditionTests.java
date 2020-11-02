@@ -14,7 +14,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals( "", c.value);
+        assertEquals( "", c.value());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("111", c.value);
+        assertEquals("111", c.value());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("222", c.value);
+        assertEquals("222", c.value());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("11222", c.value);
+        assertEquals("11222", c.value());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("11222", c.value);
+        assertEquals("11222", c.value());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("1822", c.value);
+        assertEquals("1822", c.value());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("1000000000000000000000", c.value);
+        assertEquals("1000000000000000000000", c.value());
     }
 
     @Test
@@ -84,6 +84,6 @@ public class MyBigDecimalIntAdditionTests {
 
         MyBigDecimalInt c = a.plus(b);
 
-        assertEquals("9324123598349081092358091283509123591023570912325280370055226186673162628036848211564867243938050929294280", c.value);
+        assertEquals("9324123598349081092358091283509123591023570912325280370055226186673162628036848211564867243938050929294280", c.value());
     }
 }

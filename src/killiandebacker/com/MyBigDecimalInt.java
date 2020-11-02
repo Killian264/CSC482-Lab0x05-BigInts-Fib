@@ -6,19 +6,22 @@ public class MyBigDecimalInt {
 
     public String value;
 
-    public int N;
-
     public MyBigDecimalInt(String value){
-        this.N = value.length();
+        this.value = new StringBuilder(value).reverse().toString();
+    }
+    public MyBigDecimalInt(String value, boolean reversed){
         this.value = value;
+    }
+
+    public String value(){
+        return new StringBuilder(this.value).reverse().toString();
     }
 
     public MyBigDecimalInt plus( MyBigDecimalInt x ){
         String result = "";
 
-        // Reverse Strings
-        String value1 = new StringBuilder(this.value).reverse().toString();
-        String value2 = new StringBuilder(x.value).reverse().toString();
+        String value1 = this.value;
+        String value2 = x.value;
 
         int len_value1 = value1.length();
         int len_value2 = value2.length();
@@ -69,10 +72,7 @@ public class MyBigDecimalInt {
             result += '1';
         }
 
-        // Reverse string
-        String result_reversed = new StringBuilder(result).reverse().toString();
-
-        return new MyBigDecimalInt(result_reversed);
+        return new MyBigDecimalInt(result, true);
     }
 
     // Negative numbers are NOT supported
@@ -80,8 +80,8 @@ public class MyBigDecimalInt {
         String result = "";
 
         // Reverse Strings
-        String value1 = new StringBuilder(this.value).reverse().toString();
-        String value2 = new StringBuilder(x.value).reverse().toString();
+        String value1 = this.value;
+        String value2 = x.value;
 
         int len_value1 = value1.length();
         int len_value2 = value2.length();
@@ -121,23 +121,19 @@ public class MyBigDecimalInt {
             result += (char)(sum % 10 + '0');
         }
 
-        // Reverse string
-        String result_reversed = new StringBuilder(result).reverse().toString();
-
-        i = 0;
-        for(; i < result_reversed.length(); i++){
-            if(result_reversed.charAt(i) != '0'){
+        for(i = result.length()-1; i >= 0; i--){
+            if(result.charAt(i) != '0'){
                 break;
             }
         }
 
-        result_reversed = result_reversed.substring(i, result_reversed.length());
+        result= result.substring(0, i+1);
 
-        if(result_reversed.length() == 0){
-            result_reversed = "0";
+        if(result.length() == 0){
+            result = "0";
         }
 
-        return new MyBigDecimalInt(result_reversed);
+        return new MyBigDecimalInt(result, true);
     }
 
     public boolean greaterThan( MyBigDecimalInt x ){
@@ -155,7 +151,7 @@ public class MyBigDecimalInt {
             return len_value1 > len_value2;
         }
 
-        for(int i = 0; i < len_value1; i++){
+        for(int i = len_value1 - 1; i >= 0; i--){
             char chr_a = value1.charAt(i);
             char chr_b = value2.charAt(i);
             int a = Character.getNumericValue(chr_a);
@@ -174,8 +170,8 @@ public class MyBigDecimalInt {
 
     public MyBigDecimalInt times( MyBigDecimalInt x ){
         // Reverse Strings
-        String value1 = new StringBuilder(this.value).reverse().toString();
-        String value2 = new StringBuilder(x.value).reverse().toString();
+        String value1 = this.value;
+        String value2 = x.value;
 
         int len_value1 = value1.length();
         int len_value2 = value2.length();
@@ -216,8 +212,7 @@ public class MyBigDecimalInt {
                 line_product += (char)(carry_over + '0');
             }
 
-            String line_product_reversed = new StringBuilder(line_product).reverse().toString();
-            line_products.add(new MyBigDecimalInt(line_product_reversed));
+            line_products.add(new MyBigDecimalInt(line_product, true));
         }
 
 

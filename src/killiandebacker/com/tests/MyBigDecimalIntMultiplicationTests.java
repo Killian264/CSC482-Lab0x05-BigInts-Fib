@@ -13,7 +13,7 @@ public class MyBigDecimalIntMultiplicationTests {
 
         MyBigDecimalInt c = a.times(b);
 
-        assertEquals("", c.value);
+        assertEquals("", c.value());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class MyBigDecimalIntMultiplicationTests {
 
         MyBigDecimalInt c = a.times(b);
 
-        assertEquals("81", c.value);
+        assertEquals("81", c.value());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class MyBigDecimalIntMultiplicationTests {
 
         MyBigDecimalInt c = a.times(b);
 
-        assertEquals("8991", c.value);
+        assertEquals("8991", c.value());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class MyBigDecimalIntMultiplicationTests {
 
         MyBigDecimalInt c = a.times(b);
 
-        assertEquals("8991", c.value);
+        assertEquals("8991", c.value());
     }
 
     @Test
@@ -53,6 +53,6 @@ public class MyBigDecimalIntMultiplicationTests {
 
         MyBigDecimalInt c = a.times(b);
 
-        assertEquals("121932631137021795233476111417691303046561496442808248680312595627603318607413518194594368143839412636932319529936043213889100245919007045141425176779921281654292798862237459082431651478298", c.value);
+        assertEquals("121932631137021795233476111417691303046561496442808248680312595627603318607413518194594368143839412636932319529936043213889100245919007045141425176779921281654292798862237459082431651478298", c.value());
     }
 }

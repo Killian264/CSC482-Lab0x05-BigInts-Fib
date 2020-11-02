@@ -25,7 +25,7 @@ public class MyBigDecimalIntSubtractTests {
 
         MyBigDecimalInt c = a.minus(b);
 
-        assertEquals("0", c.value);
+        assertEquals("0", c.value());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class MyBigDecimalIntSubtractTests {
 
         MyBigDecimalInt c = a.minus(b);
 
-        assertEquals("11000", c.value);
+        assertEquals("11000", c.value());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class MyBigDecimalIntSubtractTests {
 
         MyBigDecimalInt c = a.minus(b);
 
-        assertEquals("902", c.value);
+        assertEquals("902", c.value());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class MyBigDecimalIntSubtractTests {
 
         MyBigDecimalInt c = a.minus(b);
 
-        assertEquals("99999999999999", c.value);
+        assertEquals("99999999999999", c.value());
     }
 
 //    @Test

@@ -54,5 +54,12 @@ public class MyBigDecimalIntGreaterThanTests {
 
         assertEquals(true, a.greaterThan(b));
     }
+    @Test
+    void greaterThanALarger3(){
+        MyBigDecimalInt a = new MyBigDecimalInt("2111");
+        MyBigDecimalInt b = new MyBigDecimalInt("1112");
+
+        assertEquals(true, a.greaterThan(b));
+    }
 
 }
