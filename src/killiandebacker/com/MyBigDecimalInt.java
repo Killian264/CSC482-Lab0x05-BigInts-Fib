@@ -75,6 +75,71 @@ public class MyBigDecimalInt {
         return new MyBigDecimalInt(result_reversed);
     }
 
+    // Negative numbers are NOT supported
+    public MyBigDecimalInt minus( MyBigDecimalInt x ){
+        String result = "";
+
+        // Reverse Strings
+        String value1 = new StringBuilder(this.value).reverse().toString();
+        String value2 = new StringBuilder(x.value).reverse().toString();
+
+        int len_value1 = value1.length();
+        int len_value2 = value2.length();
+
+        int carry_over = 0;
+        int i = 0;
+
+        // Add string 2 to string 1
+        for(i = 0; i < len_value2; i++){
+            char chr_a = value1.charAt(i);
+            char chr_b = value2.charAt(i);
+            int a = Character.getNumericValue(chr_a);
+            int b = Character.getNumericValue(chr_b);
+
+            int sum = a - b - carry_over;
+
+            carry_over = (sum < 0) ? 1 : 0;
+
+            sum = sum < 0 ? sum + 10 : sum;
+
+            result += (char)(sum % 10 + '0');
+        }
+
+
+        // Finish moving over string 1 and deal with carry over
+        for(; i < len_value1; i++){
+            char chr_a = value1.charAt(i);
+
+            int a = Character.getNumericValue(chr_a);
+
+            int sum = a - carry_over;
+
+            carry_over = (sum < 0) ? 1 : 0;
+
+            sum = sum < 0 ? sum + 10 : sum;
+
+            result += (char)(sum % 10 + '0');
+        }
+
+        // Reverse string
+        String result_reversed = new StringBuilder(result).reverse().toString();
+
+        i = 0;
+        for(; i < result_reversed.length(); i++){
+            if(result_reversed.charAt(i) != '0'){
+                break;
+            }
+        }
+
+        result_reversed = result_reversed.substring(i, result_reversed.length());
+
+        if(result_reversed.length() == 0){
+            result_reversed = "0";
+        }
+
+        return new MyBigDecimalInt(result_reversed);
+    }
+
     public boolean greaterThan( MyBigDecimalInt x ){
 
         String result = "";
